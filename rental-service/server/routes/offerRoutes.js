@@ -1,8 +1,14 @@
-import { Router } from "express";
-import { getAllOffers } from "../controllers/offerController.js";
+import {Router} from 'express';
+import { createOffer, getAllOffers, getFullOffer } from '../controllers/offerController.js';
+import upload from '../middleware/upload.js';
 
-const offerRouter = new Router();
+const router = new Router();
 
-offerRouter.get('/offers', getAllOffers);
+router.get('/offers', getAllOffers);
+router.post('/offers', upload.fields([
+    { name: 'previewImage', maxCount: 1 },
+    { name: 'photos', maxCount: 6 }
+]), createOffer);
+router.get('/offers/:id', getFullOffer);
 
-export default offerRouter;
+export default router;
