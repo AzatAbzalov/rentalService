@@ -10,14 +10,16 @@ import { AppRoute, AuthorizationStatus } from "../../const";
 import { JSX } from "react";
 import { PrivateRoute } from "../private-route/private-route";
 import { FullOffer, OffersList } from '../../types/offer';
+import { Review } from '../../types/review';
   
 type AppMainPageProps = {
     rentalOffersCount: number;
     offersList: OffersList[];
     offers: FullOffer[];
+    reviews: Review[];
 }
 
-function App({ rentalOffersCount, offers, offersList}: AppMainPageProps): JSX.Element {
+function App({ rentalOffersCount, offers, offersList, reviews }: AppMainPageProps): JSX.Element {
     return (
         <BrowserRouter>
             <Routes>
@@ -37,7 +39,7 @@ function App({ rentalOffersCount, offers, offersList}: AppMainPageProps): JSX.El
                             <Favourites favoritesList={ offersList }   />
                         </PrivateRoute>} />
 
-                <Route path={ `${AppRoute.Offer}/:id` } element={<Offer offers={offers}/>} />
+                <Route path={ `${AppRoute.Offer}/:id` } element={<Offer offers={offers} reviews={reviews} offersList={offersList}/>} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </BrowserRouter>
