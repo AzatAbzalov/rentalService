@@ -19,13 +19,13 @@ type AppMainPageProps = {
     reviews: Review[];
 }
 
-function App({ rentalOffersCount, offers, offersList, reviews }: AppMainPageProps): JSX.Element {
+function App({ offers, offersList, reviews }: AppMainPageProps): JSX.Element {
     return (
         <BrowserRouter>
             <Routes>
                 <Route
                     path={AppRoute.Main}
-                    element={<MainPage rentalOffersCount={rentalOffersCount} offersList={ offersList } />} />
+                    element={<MainPage/>} />
 
                 <Route path={AppRoute.Login} element={<Login/>} />
 

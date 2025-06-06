@@ -10,14 +10,15 @@ type CitiesCardProps = {
     isPremium: boolean;
     previewImage: string;
     rating: number;
+    onMouseEnter?: () => void;
 }
 
-function CitiesCard({ id, title, type, price, previewImage, isPremium, rating }: CitiesCardProps) {
+function CitiesCard({ id, title, type, price, previewImage, isPremium, rating, onMouseEnter }: CitiesCardProps) {
     const [, setOfferId] = useState('');
     const ratingWidth = `${rating * 20}%`;
     
     return (
-        <article className="cities__card place-card" onMouseOver={() => setOfferId(id)} onMouseOut={() => setOfferId('')}>
+        <article className="cities__card place-card" onMouseOver={() => setOfferId(id)} onMouseOut={() => setOfferId('')} onMouseEnter={onMouseEnter}>
             {isPremium && (
                 <div className="place-card__mark">
                     <span>Premium</span>
